@@ -1,4 +1,0 @@
-[
-  { "rule" : "/", "name" : "guestbook", "description": "Гостевая книга", "action": "\\PCatalog\\Actions\\Guestbook" },
-  { "rule" : "/test/", "name" : "index", "description": "Тестовая страница", "action": "\\PCatalog\\Actions\\Index" }
-]
