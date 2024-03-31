@@ -1,53 +1,73 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?php
+    //Including the database connecting
+    include_once 'settings.php';
+?>
+<DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Sign the Guestbook</title>
-<link rel="stylesheet" href="css/style.css" />
-<link rel="stylesheet" href="css/sign.css" />
-<script>
-function Validate()
-{
-	var x=document.forms["guest"]["email"].value;
-	var y=document.forms["guest"]["name"].value;
-	if(y==null || y=="")
-	{
-		alert("Please enter your Name! ");
-		return false;
-	}
-	if(x==null || x=="")
-	{
-		alert("Please enter your email address!");
-		return false;
-	}
-	var atpos=x.indexOf("@");
-	var dotpos=x.lastIndexOf(".");
-	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
-  	{
-  		alert("Not a valid e-mail address");
-		return false;
-	}
-	else
-		return true;
-}
-</script>
+    <meta charset="utf-8">
+    <title><?php echo $sitename; ?></title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
-    </ul>
-    <hr/>
-    </div>
-    <div id="content">
-    <h2>Sign the Guest Book </h2>
-   		<form name="guest" method="post" action="addcomment.php" onsubmit="return Validate();">
-			<span>Name:</span>    <input type="text" name="name"/><br />
-            <span>Email:</span> <input type="text" name="email"/><br />
-            <p>Message:</p> <textarea name="message" rows="10" cols="50"> </textarea> <br />
-            <input type="submit" value="Sign this in the Book" />
-        </form>
-    </div>
-</div>
-    <div id="footer">
-    <hr/>
-    </div>
+<body>
+    <center><h1>This is our Guestbook</h1></center>
+    <br>
+    <center><h3>Here is what our customers have wrote about us!</h3></center>
+    <br>
+
+    <?php
+        // Checking connection
+        if ($conn == FALSE) {
+            //If the connection fails then it sends out an error code.
+            echo "Connection Failed: " . mysqli_connect_error();
+            exit();
+        }
+
+        //If the connection not failed, then we are making a sql string 
+        $sql = "SELECT * FROM comments";
+
+        //Then we are sending the sql string to the database
+        $result = mysqli_query($conn, $sql);
+
+        //After we sent it, we will count the rows there matches with the sql string
+        $count = mysqli_num_rows($result);
+
+        //Checking if there is more then 0 rows
+        if ($count > 0) {
+            //Outputting the rows one by one
+            while($row = mysqli_fetch_array($result)) {
+                echo '<div class="comments">';
+
+                echo $row['Comment'] . '<br><br>';
+
+                echo '<div class="msg">' . $row['Name'] . '</div>' . '<br>';
+
+                echo '<div class="msg">' . $row['Date'] . '</div>' .  '<br>';
+
+                echo '</div>';
+
+                echo '<br>';
+                echo '<br>';
+
+
+            }
+            echo "</table>";
+        } else {
+            //If there is no rows, we will print out that there is no rows.
+            echo '<center>' . "0 results, No comments has been created." . '</center>';
+            echo '<br>';
+            echo '<br>';
+        }
+        //Then we close the connection
+        mysqli_close($conn);
+    ?>
+    <center><form action="add.php" method="POST">
+        Name:<br>
+        <input type="text" name="name"><br><br>
+        Comment:<br>
+        <textarea style="overflow:auto;resize:none" name="comment" rows="7" cols="50" maxlength="1000"></textarea><br><br>
+        <input type="submit" value="Send Comment">
+    </form></center>
 </body>
 </html>
