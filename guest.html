@@ -12,16 +12,15 @@ include('variableAndFunctions.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="https://castorisdead.xyz/assets/images/avatar/avatar.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="https://castorisdead.xyz/assets/images/avatar/avatar.png">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <title><?= $title ?></title>
+    <link rel="shortcut icon" href="korb.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="korb.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Guest book</title>
 </head>
 
 <body>
     <div class="guestbookarea">
-        <h1 id="welcome">Welcome to <?= $title ?>!</h1>
-        <p id="madeby">Powered by <a href="https://github.com/whoisyoges/simple-guestbook" target="_blank">simple guestbook</a>.</p>
+        <h1 id="welcome">Welcome to Rios guest book <?= $title ?>!</h1>
         
         <form action="message.php" method="post">
             <p class="inputid">Name:</p>
@@ -31,7 +30,7 @@ include('variableAndFunctions.php');
             <p><textarea name="message" rows="3" maxlength="600" class="inputfields" placeholder="Your Message"></textarea></p>
 
             <p class="inputid">Verification</p>
-            <p><?= $randNum1 ?> + <?= $randNum2 ?> is equal to: <input type="text" name="verification" id="verification" maxlength="3" placeholder="Your Answer"></p>
+            <p> 1 + 1 is equal to: <input type="text" name="verification" id="verification" maxlength="3" placeholder="Your Answer"></p>
 
             <input type="submit" value="send" title="Send your message!">
             <input type="hidden" name="action" value="sendmessage">
