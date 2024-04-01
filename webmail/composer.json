@@ -6,7 +6,7 @@
 		},
 		"platform-check": false,
 		"allow-plugins": {
-			"composer/installers": true,
+			"composer/installers": true,               
 			"oomphinc/composer-installers-extender": true
 		}
 	},
@@ -15,7 +15,7 @@
 			"type": "package",
             "package": {
 				"name": "gufy/cpanel-php",
-				"version": "1.1.0",
+				"version": "dev-master",
 				"dist": {
 					"type": "zip",
 					"url": "https://api.github.com/repos/mgufrone/cpanel-php/zipball/a6e2becf590cdfb2c7c2feea4c6682b665761eb4",
