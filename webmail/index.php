@@ -1,21 +1,25 @@
 <?php
-/*
- * @copyright Copyright (c) 2017, Afterlogic Corp.
- * @license AGPL-3.0
+
+/**
+ * index.php
  *
- * This code is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License, version 3,
- * as published by the Free Software Foundation.
+ * Redirects to the login page.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License, version 3,
- * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * @copyright 1999-2011 The SquirrelMail Project Team
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @version $Id: index.php 14084 2011-01-06 02:44:03Z pdontthink $
+ * @package squirrelmail
  */
 
-include_once 'system/autoload.php';
+// Are we configured yet?
+if( ! file_exists ( 'config/config.php' ) ) {
+    echo '<html><body><p><strong>ERROR:</strong> Config file ' .
+        '&quot;<tt>config/config.php</tt>&quot; not found. You need to ' .
+        'configure SquirrelMail before you can use it.</p></body></html>';
+    exit;
+}
 
-\Aurora\System\Application::Start();
+// If we are, go ahead to the login page.
+header('Location: src/login.php');
+
+?>
